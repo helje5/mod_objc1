@@ -83,6 +83,66 @@ Apache Config:
 
 - resolve mem-leaks created by handler and command tables
 
+
+ApacheWO
+========
+
+Also included is ApacheWO - a bundle written using mod_objc.
+This used the SOPE application framework to host WO like applications directly
+from within Apache 1. Again, just a toy, but a pretty cool one ;-)
+
+Essentially you could just drop in your components into the Apache htdocs
+directory, like
+
+    LoadApacheBundle  ApacheWO.apache
+
+    htdocs/HelloWorld.wo/
+    
+    # .html
+    <WEBOBJECT NAME="Frame">
+      .wo based page
+    
+      a: <WEBOBJECT NAME="a"></WEBOBJECT><br />
+      b: <WEBOBJECT NAME="b"></WEBOBJECT><br />
+      c: <WEBOBJECT NAME="AddAB"></WEBOBJECT><br />
+    
+      Action Link to Page2: <WEBOBJECT NAME="Page2">Page2</WEBOBJECT>
+    </WEBOBJECT>
+    
+    # .wod    
+    Frame: Frame    { title = name;  }
+    AddAB: WOString { value = addAB; }
+    a:     WOString { value = a;     }
+    b:     WOString { value = b;     }
+    Page2: WOHyperlink { action = gotoPage2; }
+
+You can embed other components etc.
+
+Or you have a custom WORequestHandler? Just drop it into your htdocs like that:
+
+    AddType skyrix/request-handler .rqh
+    
+    File xmlrpc.rqh:
+      { class = "XmlRpcRequestHandler"; }
+
+But wait, now it get's fancy. Since those are just standard Apache 1 objects,
+you can even embed components within other Apache engines, like SSI (Server Side
+Includes):
+
+    <html>
+      <head><title>Server Side Include</title></head>
+    
+      <body>
+        <h3>Server Side Include</h3>
+    
+        Today is <!--#echo var="DATE_LOCAL" --><br /><br />
+        Inluded .wox page:
+        <table border="1" width="100%"><tr><td>
+        <!--#include virtual="Page2.wox" -->
+        </td></tr></table>
+      </body>
+    </html>
+
 ###Contact
 
 [@helje5](http://twitter.com/helje5) | helge@alwaysrightinstitute.com
