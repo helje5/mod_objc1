@@ -62,17 +62,17 @@ before-ApTest-all::
 ```
 
 Apache Config:
-```
-# Setup
 
+    # Setup
+    
     LoadModule gnustep_conf_module \
             Libraries/ix86/linux-gnu/apache/mod_gnustep_conf.so
     LoadModule gsbundle_module \
             Libraries/ix86/linux-gnu/apache/mod_gsbundle.so
     AddModule  mod_gsbundle.m
-
-# Load Bundle
-
+    
+    # Load Bundle
+    
     LoadBundle   ApTest.bundle
     
     <Location "/AlwaysRight/">
