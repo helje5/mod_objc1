@@ -32,8 +32,6 @@ Module:
 @interface ApTest : ApacheModule
 @end
 
-#include "ApacheResourcePool.h"
-
 @implementation ApTest
 
 - (int)handleTextHtmlRequest:(ApacheRequest *)_rq {
@@ -66,20 +64,20 @@ before-ApTest-all::
 Apache Config:
 ```
 # Setup
-LoadModule gnustep_conf_module \
-        Libraries/ix86/linux-gnu/apache/mod_gnustep_conf.so
-LoadModule gsbundle_module \
-        Libraries/ix86/linux-gnu/apache/mod_gsbundle.so
-AddModule  mod_gsbundle.m
+
+    LoadModule gnustep_conf_module \
+            Libraries/ix86/linux-gnu/apache/mod_gnustep_conf.so
+    LoadModule gsbundle_module \
+            Libraries/ix86/linux-gnu/apache/mod_gsbundle.so
+    AddModule  mod_gsbundle.m
 
 # Load Bundle
-```
-LoadBundle   ApTest.bundle
 
-<Location "/AlwaysRight/">
-  SetHandler ap-test
-</Location>
-```
+    LoadBundle   ApTest.bundle
+    
+    <Location "/AlwaysRight/">
+      SetHandler ap-test
+    </Location>
 
 ###Todo
 
