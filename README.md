@@ -3,7 +3,7 @@ mod_objc
 
 Section: H's Computer History Museum
 
-###mod_objc
+### mod_objc
 
 This is an Apache 1 (yes, *one*, like Apache 1.3) module I played with back in
 2001. Being an Apache 1 module it is pretty much useless today.
@@ -79,7 +79,7 @@ Apache Config:
       SetHandler ap-test
     </Location>
 
-###Todo
+### Todo
 
 - resolve mem-leaks created by handler and command tables
 
@@ -143,6 +143,6 @@ Includes):
       </body>
     </html>
 
-###Contact
+### Contact
 
 [@helje5](http://twitter.com/helje5) | helge@alwaysrightinstitute.com
